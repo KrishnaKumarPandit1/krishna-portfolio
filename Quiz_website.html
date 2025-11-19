@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Quiz Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+    .option {
+      margin: 10px 0;
+      padding: 10px;
+      background: #efefef;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="question">Loading...</h2>
+    <div id="options"></div>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+    <h3 id="score" style="text-align:center; display:none;"></h3>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What does HTML stand for?",
+        options: ["Hyper Trainer Marking Language", "Hyper Text Markup Language", "Hyper Text Manage Links", "Home Text Markup Language"],
+        correct: 1,
+      },
+      {
+        question: "CSS is used for?",
+        options: ["Styling", "Database", "Server", "Hacking"],
+        correct: 0,
+      },
+      {
+        question: "JavaScript runs on?",
+        options: ["Browser", "Server", "Both", "None"],
+        correct: 2,
+      },
+    ];
+
+    let index = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const q = quizData[index];
+      document.getElementById("question").innerText = q.question;
+
+      let optionHtml = "";
+      q.options.forEach((opt, i) => {
+        optionHtml += `<div class='option' onclick='checkAnswer(${i})'>${opt}</div>`;
+      });
+
+      document.getElementById("options").innerHTML = optionHtml;
+    }
+
+    function checkAnswer(selected) {
+      if (selected === quizData[index].correct) {
+        score++;
+      }
+      document.getElementById("nextBtn").style.display = "block";
+    }
+
+    function nextQuestion() {
+      index++;
+      if (index >= quizData.length) {
+        document.getElementById("question").style.display = "none";
+        document.getElementById("options").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("score").innerText = `Your Score: ${score} / ${quizData.length}`;
+        document.getElementById("score").style.display = "block";
+      } else {
+        loadQuestion();
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

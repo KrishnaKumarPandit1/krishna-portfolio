@@ -259,4 +259,48 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
         }
+ /* Skills Section */
+.skills-section {
+    padding: 60px 20px;
+  
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #f9f9f9;
+}
+
+/* Skill Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Skill Cards */
+.skill-card {
+    padding: 15px;
+    background: #fbbf24;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 600;
+    color: #444;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+}
+
+/* Hover Effect */
+.skill-card:hover {
+    background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+}
